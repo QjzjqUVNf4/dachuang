@@ -71,8 +71,7 @@ def main():
                            dtype={'Stkcd': str},
                            # Warning: Values are in cents
                            converters={'FN_Fn06002':
-                                           lambda s: 100 * int(str(s).split('.')[0])
-                                                     + int(str(s).split('.')[1].ljust(2, '0') if '.' in str(s) else 0)
+                                           lambda s: Money(s,"RMB").sub_units
                                            if s else 0},
                            skiprows=[1, 2])  # add “nrows = n” parameter to read partly
     # 构造分层索引（以三个列表：股票代码、年度、自行分类为包含多层级索引的Dataframe的索引）
